@@ -2,6 +2,7 @@ import 'package:figma/firebase_options.dart';
 import 'package:figma/homescreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 
 Future<void> main() async {
@@ -16,12 +17,18 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Cafe',
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: const HomeScreen());
+    return Sizer(builder: (context, orientation, deviceType){
+
+       return MaterialApp(
+          title: 'Cafe',
+          theme: ThemeData(
+            useMaterial3: true,
+          ),
+          debugShowCheckedModeBanner: false,
+          home: const HomeScreen());
+
+    }
+     
+    );
   }
 }

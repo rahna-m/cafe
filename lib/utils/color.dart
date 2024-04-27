@@ -8,4 +8,5 @@ class AppColors {
   static const catbtnbg = Color(0xffc67c4e);
   static const greytxt = Color(0xff63787a);
   static const bttmclr = Color(0xff8d8d8d);
+  static const pricetext = Color(0xff2f4b4e);
 }

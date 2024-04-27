@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:figma/menulistscreen.dart';
 import 'package:figma/utils/color.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+ 
   List locationlist = ["Bilzen, Tanjungbalai", "location"];
   String searchKey = "";
   late Stream streamQuery;
@@ -54,8 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
                 color: Colors.black,
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  const SizedBox(
-                    height: 20,
+                   SizedBox(
+                    height: 3.h,
                   ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -191,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.only(
                   left: 15,
                 ),
-                height: 45,
+                height: 55,
                 child: ListView.builder(
                     padding: EdgeInsets.zero,
                     controller: _scrollController,
@@ -200,6 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) {
                       return Container(
                         width: 140,
+                       margin: const EdgeInsets.all(5),
                         padding: const EdgeInsets.only(
                           left: 10,
                         ),
@@ -216,6 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          elevation: 0,
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
             selectedItemColor: AppColors.catbtnbg,
@@ -273,6 +277,7 @@ class _HomeScreenState extends State<HomeScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),
+          elevation: 0
         ),
         onPressed: () {
           setState(() {
