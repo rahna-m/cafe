@@ -33,8 +33,7 @@ class _MenuListScreenState extends State<MenuListScreen> {
                       shrinkWrap: true,
                       // scrollDirection: Axis.vertical,
                       // primary: true,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       itemCount: docs.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -51,14 +50,13 @@ class _MenuListScreenState extends State<MenuListScreen> {
                             elevation: 0.1,
                             color: Colors.white,
                             child: Padding(
-                              padding: const EdgeInsets.all(5),
+                              padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     width: 40.w,
                                     height: 15.5.h,
-                                    padding: const EdgeInsets.only(top: 5),
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
                                           image: NetworkImage(
@@ -70,31 +68,62 @@ class _MenuListScreenState extends State<MenuListScreen> {
                                         ),
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(15))),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                    child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Image.asset(
-                                          "images/Vector.png",
-                                          width: 20,
-                                          height: 20,
+                                        Container(
+                                          width: 51,
+                                          height: 25,
+                                          decoration: BoxDecoration(
+                                              color:
+                                                  Colors.black.withOpacity(0.2),
+                                              backgroundBlendMode:
+                                                  BlendMode.darken,
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(16),
+                                                      topRight:
+                                                          Radius.circular(0),
+                                                      bottomLeft:
+                                                          Radius.circular(0),
+                                                      bottomRight:
+                                                          Radius.circular(16))),
+                                          child: Center(
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Image.asset(
+                                                  "images/Vector.png",
+                                                  width: 20,
+                                                  height: 20,
+                                                ),
+                                                Text(
+                                                  docs[index]
+                                                      .data()!["rating"]
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                )
+                                              ],
+                                            ),
+                                          ),
                                         ),
-                                        Text(
-                                          docs[index]
-                                              .data()!["rating"]
-                                              .toString(),
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                        )
                                       ],
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 3),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
