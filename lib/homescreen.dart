@@ -12,8 +12,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
- 
-  List locationlist = ["Bilzen, Tanjungbalai", "location"];
+  List locationlist = ["Bilzen, Tanjungbalai", "Bandung, Indonesia"];
+  String locationvalue = "";
+
   String searchKey = "";
   late Stream streamQuery;
   TextEditingController searchController = TextEditingController();
@@ -43,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     categoryFn(category);
+    locationvalue = locationlist[0];
   }
 
   @override
@@ -53,33 +55,67 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             Container(
                 height: MediaQuery.of(context).size.height / 3,
-                padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
+                padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                 color: Colors.black,
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                   SizedBox(
+                  SizedBox(
                     height: 3.h,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
+                          const Text(
                             "Location",
                             style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
                                 color: Color.fromARGB(255, 206, 204, 204)),
                           ),
-                          Text("Bilzen, Tanjungbalai",
-                              style: TextStyle(color: Colors.white))
+                          DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              isDense: true,
+                              icon: Image.asset(
+                                "images/dropdownarrow.png",
+                                color: Colors.white,
+                                width: 20,
+                                height: 20,
+                              ),
+                              items: locationlist.map((e) {
+                                return DropdownMenuItem(
+                                  value: e.toString(),
+                                  child: Text(e.toString()),
+                                );
+                              }).toList(),
+                              value: locationvalue,
+                              style: const TextStyle(
+                                  color: AppColors.whitetext,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600),
+                              onChanged: (value) {
+                                setState(() {
+                                  locationvalue = value.toString();
+                                });
+                              },
+                            ),
+                          )
                         ],
                       ),
-                      CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.white,
-                        backgroundImage: AssetImage("images/propic.png"),
-                      )
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(14.0),
+                        child: Container(
+                          height: 44.0,
+                          width: 44.0,
+                          color: Colors.white,
+                          child: const Image(
+                            image: AssetImage("images/propic.png"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   Padding(
@@ -87,7 +123,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         top: 25,
                       ),
                       child: SizedBox(
-                        height: 60,
+                        height: 52,
+                        width: 315,
                         child: Container(
                             decoration: BoxDecoration(
                               color: AppColors.greyclr,
@@ -95,14 +132,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             child: Row(
                               children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 15),
-                                  child: Icon(
-                                    Icons.search,
-                                    color: AppColors.offwhite,
-                                    size: 25,
-                                  ),
-                                ),
+                                Padding(
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: SizedBox(
+                                      width: 20,
+                                      height: 20,
+                                      child: Image.asset(
+                                        "images/searchicon.png",
+                                        color: Colors.white,
+                                      ),
+                                    )),
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 15),
@@ -114,7 +153,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             border: InputBorder.none,
                                             hintText: 'Search coffee',
                                             hintStyle: TextStyle(
-                                                color: AppColors.labeltxt)),
+                                                color: AppColors.labeltxt,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400)),
                                         onChanged: (value) {
                                           setState(() {
                                             searchKey = value;
@@ -160,15 +201,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
+                          width: 60,
+                          height: 26,
                           decoration: BoxDecoration(
                             color: const Color.fromARGB(242, 228, 63, 63),
-                            borderRadius: BorderRadius.circular(5.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.all(5),
-                            child: Text(
-                              "Promo",
-                              style: TextStyle(color: Colors.white),
+                            padding: EdgeInsets.only(left: 4, right: 4),
+                            child: Center(
+                              child: Text(
+                                "Promo",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ),
                           ),
                         ),
@@ -178,8 +226,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             'Buy one get \none FREE',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 33,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 32,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         )
@@ -188,10 +236,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 )),
             Transform.translate(
-              offset: const Offset(0, -65),
+              offset: const Offset(0, -70),
               child: Container(
                 padding: const EdgeInsets.only(
-                  left: 15,
+                  left: 25,
                 ),
                 height: 55,
                 child: ListView.builder(
@@ -201,25 +249,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return Container(
-                        width: 140,
-                       margin: const EdgeInsets.all(5),
-                        padding: const EdgeInsets.only(
-                          left: 10,
-                        ),
-                        child: ButtonsCategory(buttons[index], 14),
+                        margin: const EdgeInsets.all(5),
+                        child: ButtonsCategory(buttons[index]),
                       );
                     }),
               ),
             ),
             Transform.translate(
-                offset: const Offset(0, -60),
+                offset: const Offset(0, -65),
                 child: MenuListScreen(
                   streamQery: streamQuery,
                 )),
           ]),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          elevation: 0,
+            elevation: 0,
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
             selectedItemColor: AppColors.catbtnbg,
@@ -227,57 +271,94 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: (value) {},
             currentIndex: 0,
             items: [
+             
               BottomNavigationBarItem(
                   icon: GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      child: Image.asset('images/Home.png',
-                          width: 25, height: 25, color: AppColors.catbtnbg)),
-                  label: '-'),
-              BottomNavigationBarItem(
-                  icon: GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      child: Image.asset(
-                        'images/heart.png',
-                        width: 25,
-                        height: 25,
-                        color: AppColors.bttmclr,
+                      child: Column(
+                        children: [
+                        const  SizedBox(height: 5,),
+                          Image.asset('images/Home.png',
+                              width: 25, height: 25, color: AppColors.catbtnbg),
+
+                              Image.asset('images/Bg.png',
+                              width: 10, height: 15, color: AppColors.catbtnbg),
+
+                        ],
                       )),
-                  label: '-'),
+                  label: ''),
               BottomNavigationBarItem(
                   icon: GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      child: Image.asset(
-                        'images/bag.png',
-                        width: 25,
-                        height: 25,
-                        color: AppColors.bttmclr,
+                      child: Column(
+                        children: [
+                          const  SizedBox(height: 5,),
+                          Image.asset(
+                            'images/Heart.png',
+                            width: 25,
+                            height: 25,
+                            color: AppColors.bttmclr,
+                          ),
+
+                            Image.asset('images/Bg.png',
+                              width: 10, height: 15, color: Colors.white),
+                        ],
                       )),
-                  label: '-'),
+                  label: ''),
               BottomNavigationBarItem(
                   icon: GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      child: Image.asset(
-                        'images/bell.png',
-                        width: 25,
-                        height: 25,
-                        color: AppColors.bttmclr,
+                      child: Column(
+                        children: [
+                           const SizedBox(height: 5,),
+                          Image.asset(
+                            'images/Bag.png',
+                            width: 25,
+                            height: 25,
+                            color: AppColors.bttmclr,
+                          ),
+
+                            Image.asset('images/Bg.png',
+                              width: 10, height: 15, color: Colors.white),
+                        ],
                       )),
-                  label: '-')
+                  label: ''),
+              BottomNavigationBarItem(
+                  icon: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      child: Column(
+                        children: [
+                          const  SizedBox(height: 5,),
+                          Image.asset(
+                            'images/Notification.png',
+                            width: 25,
+                            height: 25,
+                            color: AppColors.bttmclr,
+                          ),
+
+                            Image.asset('images/Bg.png',
+                              width: 10, height: 15, color: Colors.white),
+                        ],
+                      )),
+                  label: '')
             ]),
       ),
     );
   }
 
-  ElevatedButton ButtonsCategory(String txt, double font) {
+  ElevatedButton ButtonsCategory(String txt) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: txxt == txt || buttons[currentposition] == txt
               ? AppColors.catbtnbg
               : Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(15.0),
           ),
-          elevation: 0
+          minimumSize: const Size(69, 38),
+          maximumSize: const Size(121, 38),
+          padding: const EdgeInsets.only(left: 18, right: 18),
+          elevation: 0,
         ),
         onPressed: () {
           setState(() {
@@ -292,17 +373,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
           if (_scrollController.hasClients) {
             _scrollController.animateTo(
-              140.0 * currentposition,
+              130.0 * currentposition,
               curve: Curves.linear,
               duration: const Duration(milliseconds: 300),
             );
           }
         },
-        child: Text(txt,
+        child: Text(txt == "Cappucino" ? "Cappuccino" : txt,
             style: TextStyle(
                 color: txxt == txt || buttons[currentposition] == txt
                     ? Colors.white
                     : AppColors.greytxt,
-                fontSize: font)));
+                fontSize: 14,
+                fontWeight: FontWeight.w600)));
   }
 }

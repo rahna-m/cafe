@@ -9,4 +9,5 @@ class AppColors {
   static const greytxt = Color(0xff63787a);
   static const bttmclr = Color(0xff8d8d8d);
   static const pricetext = Color(0xff2f4b4e);
+  static const whitetext = Color(0xffdddddd);
 }

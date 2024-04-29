@@ -21,19 +21,20 @@ class _MenuListScreenState extends State<MenuListScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-            height: 35.h,
-          margin: const EdgeInsets.only(top: 5),
+          height: 35.h,
+          // margin: const EdgeInsets.only(top: 5),
           child: StreamBuilder(
               stream: widget.streamQery,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
                   var docs = snapshot.data.docs;
-      
+
                   return GridView.builder(
                       shrinkWrap: true,
                       // scrollDirection: Axis.vertical,
                       // primary: true,
-                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15),
                       itemCount: docs.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -41,7 +42,7 @@ class _MenuListScreenState extends State<MenuListScreen> {
                         childAspectRatio: 1.0,
                         crossAxisSpacing: 0.0,
                         mainAxisSpacing: 0,
-                        mainAxisExtent: 235,
+                        mainAxisExtent: 233,
                       ),
                       itemBuilder: (context, index) {
                         return Padding(
@@ -70,8 +71,10 @@ class _MenuListScreenState extends State<MenuListScreen> {
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(15))),
                                     child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Image.asset(
                                           "images/Vector.png",
@@ -79,19 +82,25 @@ class _MenuListScreenState extends State<MenuListScreen> {
                                           height: 20,
                                         ),
                                         Text(
-                                          docs[index].data()!["rating"].toString(),
-                                          style:
-                                              const TextStyle(color: Colors.white),
+                                          docs[index]
+                                              .data()!["rating"]
+                                              .toString(),
+                                          style: const TextStyle(
+                                              color: Colors.white),
                                         )
                                       ],
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 5),
+                                    padding: const EdgeInsets.only(left: 3),
                                     child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
-                                          docs[index].data()!["name"].toString(),
+                                          docs[index]
+                                              .data()!["name"]
+                                              .toString(),
                                           style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600),
@@ -128,9 +137,9 @@ class _MenuListScreenState extends State<MenuListScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(10.0),
                                           ),
-                                          child: const Center(
-                                              child: Icon(
-                                            Icons.add,
+                                          child: Center(
+                                              child: Image.asset(
+                                            "images/add.png",
                                             color: Colors.white,
                                           )),
                                         )
@@ -144,7 +153,10 @@ class _MenuListScreenState extends State<MenuListScreen> {
                         );
                       });
                 } else {
-                  return const Center(child: CircularProgressIndicator(color: AppColors.catbtnbg,));
+                  return const Center(
+                      child: CircularProgressIndicator(
+                    color: AppColors.catbtnbg,
+                  ));
                 }
               })),
     );
