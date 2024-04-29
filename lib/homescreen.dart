@@ -297,7 +297,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             'images/Heart.png',
                             width: 25,
                             height: 25,
-                            color: AppColors.bttmclr,
+                            color: const Color.fromARGB(255, 126, 125, 125),
                           ),
 
                             Image.asset('images/Bg.png',
@@ -315,7 +315,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             'images/Bag.png',
                             width: 25,
                             height: 25,
-                            color: AppColors.bttmclr,
+                            color: Color.fromARGB(255, 128, 127, 127),
                           ),
 
                             Image.asset('images/Bg.png',
